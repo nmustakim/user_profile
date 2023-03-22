@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:user_profile/screens/home.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String name = '';
   String userName = '';
   String age = '';
+  String birthDate = '';
   TextEditingController dateController = TextEditingController();
   bool isChecked = true;
   bool isObscure = true;
@@ -44,7 +46,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 15,
+                    height: 25,
                   ),
                   Text(
                     'Let\'s get start',
@@ -63,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         color: const Color(0XFF999EA1)),
                   ),
                   const SizedBox(
-                    height: 32,
+                    height: 25,
                   ),
                   Row(
                     children: [
@@ -87,8 +89,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             child: Center(
                               child: TextFormField(
                                 maxLines: 1,
-                                initialValue: 'Mustakim',
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                     contentPadding:
                                         const EdgeInsets.fromLTRB(13, 10, 0, 12),
@@ -102,23 +103,21 @@ class _SignUpFormState extends State<SignUpForm> {
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Name is required';
-                                  } else if (!RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                      .hasMatch(email)) {
-                                    return 'Email is invalid';
+                                  } else if (value.length > 25 || value.length < 2 ) {
+                                    return 'Name is invalid';
                                   } else {
                                     return null;
                                   }
                                 },
                                 onSaved: (String? newValue) {
-                                  email = newValue ?? '';
+                                  name = newValue ?? '';
                                 },
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(width: 40,),
+                      const SizedBox(width: 40,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -139,8 +138,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             child: Center(
                               child: TextFormField(
                                 maxLines: 1,
-                                initialValue: 'mustakim',
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                     contentPadding:
                                         const EdgeInsets.fromLTRB(13, 10, 0, 12),
@@ -150,20 +148,17 @@ class _SignUpFormState extends State<SignUpForm> {
                                             color: Color(0XFFC6C6C6))),
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Color(0XFFC6C6C6)))),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Email is required';
-                                  } else if (!RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                      .hasMatch(email)) {
-                                    return 'Email is invalid';
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                            color: Color(0XFFC6C6C6)))),       validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'UserName is required';
+                                } else if (value.length > 12 || value.length < 2 ) {
+                                  return 'Username is invalid';
+                                } else {
+                                  return null;
+                                }
+                              },
                                 onSaved: (String? newValue) {
-                                  email = newValue ?? '';
+                                 userName = newValue ?? '';
                                 },
                               ),
                             ),
@@ -172,7 +167,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       )
                     ],
                   ),
-                  SizedBox(height: 7,),
+                  const SizedBox(height: 7,),
                   Text(
                     'Email',
                     style: TextStyle(
@@ -189,7 +184,6 @@ class _SignUpFormState extends State<SignUpForm> {
                     child: Center(
                       child: TextFormField(
                         maxLines: 1,
-                        initialValue: 'sophat.leat@nintrea.live',
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             contentPadding:
@@ -288,8 +282,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     child: Center(
                       child: TextFormField(
                         maxLines: 1,
-                        initialValue: '20',
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             contentPadding:
                             const EdgeInsets.fromLTRB(13, 10, 0, 12),
@@ -300,9 +293,18 @@ class _SignUpFormState extends State<SignUpForm> {
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
                                 BorderSide(color: Color(0XFFC6C6C6)))),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Age is required';
+                          } else if (int.tryParse(value)! < 12 || int.tryParse(value)! > 100) {
+                            return 'Age limit is 12 to 100';
+                          } else {
+                            return null;
+                          }
+                        },
 
                         onSaved: (String? newValue) {
-                          email = newValue ?? '';
+                          age = newValue ?? '';
                         },
                       ),
                     ),
@@ -325,6 +327,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     height: 41,
                     child: Center(
                       child: TextFormField(
+                        readOnly: true,
                       controller: dateController,
                         onTap: () async {
                           DateTime? pickedDate = await showDatePicker(
@@ -337,7 +340,8 @@ class _SignUpFormState extends State<SignUpForm> {
                             String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
 
                             setState(() {
-                              dateController.text = formattedDate; //set output date to TextField value.
+                              dateController.text = formattedDate;
+                              birthDate = formattedDate;//set output date to TextField value.
                             });
                           }else{
                           }
@@ -410,7 +414,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               color: const Color(0XFFFB344F))),
                     ],
                   ),
-             SizedBox(height: 60,),
+             const SizedBox(height: 60,),
                   SizedBox(
                       height: 45,
                       child: ElevatedButton(
@@ -422,15 +426,12 @@ class _SignUpFormState extends State<SignUpForm> {
                             _loginFormKey.currentState!.save();
                             _loginFormKey.currentState!.validate();
                             if (_loginFormKey.currentState!.validate() == true) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Center(
-                                          child: Text('Login successful'))));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(name: name,userName: userName, email: email, age: age, birthDate: birthDate,)));
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content:
-                                          Center(child: Text('Login failed'))));
+                                          Center(child: Text('Sign Up failed'))));
                             }
                           },
                           child: const Center(child: Text('Sign Up')))),
