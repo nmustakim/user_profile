@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:user_profile/screens/home.dart';
+import 'package:user_profile/constants/constants.dart';
+
+import '../global_components/bottom_bar.dart';
+
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -19,7 +22,6 @@ class _SignUpFormState extends State<SignUpForm> {
   String age = '';
   String birthDate = '';
   TextEditingController dateController = TextEditingController();
-  bool isChecked = true;
   bool isObscure = true;
 
   @override
@@ -30,11 +32,7 @@ class _SignUpFormState extends State<SignUpForm> {
         backgroundColor: const Color(0XFF160062),
         centerTitle:true,title:Text(
         'Sign Up',
-        style: TextStyle(
-            fontFamily: GoogleFonts.gochiHand().fontFamily,
-            fontSize: 36,
-            fontWeight: FontWeight.w400,
-            color: Colors.white),
+        style: kAppbarTextStyle
       ),),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -294,17 +292,12 @@ class _SignUpFormState extends State<SignUpForm> {
                                 borderSide:
                                 BorderSide(color: Color(0XFFC6C6C6)))),
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Age is required';
-                          } else if (int.tryParse(value)! < 12 || int.tryParse(value)! > 100) {
-                            return 'Age limit is 12 to 100';
-                          } else {
-                            return null;
-                          }
+                        return null;
+
                         },
 
                         onSaved: (String? newValue) {
-                          age = newValue ?? '';
+                        age = newValue ?? '';
                         },
                       ),
                     ),
@@ -365,56 +358,8 @@ class _SignUpFormState extends State<SignUpForm> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 17,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: const Color(0XFFCDD1E0)),
-                                borderRadius: BorderRadius.circular(5)),
-                            height: 20,
-                            width: 20,
-                            child: Checkbox(
-                                value: isChecked,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5)),
-                                checkColor: const Color(0XFF000C14),
-                                activeColor: const Color(0XFFFFFFFF),
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    isChecked = value!;
-                                  });
-                                }),
-                          ),
-                          const SizedBox(
-                            width: 7,
-                          ),
-                          Text(
-                            'Remember Me',
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.manrope().fontFamily,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0XFF000000)),
-                          ),
-                        ],
-                      ),
-                      Text('Forgot Password',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.manrope().fontFamily,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: const Color(0XFFFB344F))),
-                    ],
-                  ),
-             const SizedBox(height: 60,),
+                  const SizedBox(height: 50,),
+
                   SizedBox(
                       height: 45,
                       child: ElevatedButton(
@@ -426,7 +371,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             _loginFormKey.currentState!.save();
                             _loginFormKey.currentState!.validate();
                             if (_loginFormKey.currentState!.validate() == true) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(name: name,userName: userName, email: email, age: age, birthDate: birthDate,)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomBar(name: name, userName: userName, email: email, age: age, birthDate: birthDate,)));
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
@@ -435,6 +380,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             }
                           },
                           child: const Center(child: Text('Sign Up')))),
+                  SizedBox(height: 7,),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
