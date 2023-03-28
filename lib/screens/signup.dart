@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:user_profile/constants/constants.dart';
-
 import '../global_components/bottom_bar.dart';
 
 
 class SignUpForm extends StatefulWidget {
+
   const SignUpForm({Key? key}) : super(key: key);
 
   @override
@@ -30,9 +29,9 @@ class _SignUpFormState extends State<SignUpForm> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0XFF160062),
-        centerTitle:true,title:Text(
+        centerTitle:true,title:const Text(
         'Sign Up',
-        style: kAppbarTextStyle
+          style: TextStyle(fontSize: 24),
       ),),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -380,7 +379,7 @@ class _SignUpFormState extends State<SignUpForm> {
                             }
                           },
                           child: const Center(child: Text('Sign Up')))),
-                  SizedBox(height: 7,),
+                  const SizedBox(height: 7,),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

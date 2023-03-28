@@ -1,52 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:user_profile/constants/constants.dart';
 import 'package:user_profile/screens/profile.dart';
-
+import 'package:user_profile/screens/settings.dart';
+import '../controller/settings_controller.dart';
 import 'notifications.dart';
 class Home extends StatelessWidget{
+  final controller = Get.put(SettingsController());
  final String name,userName,email,age,birthDate;
-
-const Home({super.key, required this.name, required this.userName, required this.email,required this.age, required this.birthDate});
+ Home({super.key, required this.name, required this.userName, required this.email,required this.age, required this.birthDate});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: kPrimaryColor,centerTitle:true,title: Text('Home',style: kAppbarTextStyle,),),
+      appBar: AppBar(backgroundColor: kPrimaryColor,centerTitle:true,title: Obx(() => Text('Home',style: TextStyle(fontSize: controller.titleFontSize.toDouble()),),)),
       drawer: Drawer(
 
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration:  BoxDecoration(
+              decoration:  const BoxDecoration(
                 color: kPrimaryColor
               ),
-              child: Center(child: Text(userName,style: const TextStyle(color: Colors.white,fontSize: 24),)),
+              child: Center(child: Obx(() => Text(userName,style:  TextStyle(color: Colors.white,fontSize:controller.titleFontSize.toDouble()),)),
+              ),
             ),
-            ListTile(
-              title: const Text('Profile'),
-              trailing: const Icon(Icons.person),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile(name: name, userName: userName, email: email,age: age,birthDate: birthDate,)));
-              },
-            ),
+
             ListTile(
               title: const Text('Settings'),
               trailing: const Icon(Icons.settings),
               onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Settings()));
+              },
+            ),
 
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Notifications'),
-              trailing: const Icon(Icons.notifications),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const Notifications()));
-              },
-            ),
           ],
         ),
       ),

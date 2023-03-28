@@ -20,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
    late final List<Widget> _widgetOptions = <Widget>[
      Home(name:widget.name, userName: widget.userName, email: widget.email, age: widget.age, birthDate: widget.birthDate,),
 Profile(name:widget.name, userName: widget.userName, email: widget.email, age: widget.age, birthDate: widget.birthDate,),
-    const Notifications(),
+   Notifications(),
   ];
 
   void _onItemTapped(int index) {
