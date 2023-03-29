@@ -9,7 +9,7 @@ class BottomBar extends StatefulWidget {
  final String name,userName,email,age,birthDate;
 
 
-  BottomBar({super.key, required this.name, required this.userName, required this.email,  required this.age,  required this.birthDate});
+  const BottomBar({super.key, required this.name, required this.userName, required this.email,  required this.age,  required this.birthDate});
 
   @override
   State<BottomBar> createState() => _BottomBarState();
