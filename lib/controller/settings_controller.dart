@@ -10,7 +10,7 @@ if(titleFontSize<30){
   titleFontSize++;
 }
 else{
-  titleFontSize = titleFontSize;
+  null;
 }
   update();
 }
@@ -18,10 +18,10 @@ void titleTextDecrement() {
   if(titleFontSize > 18){
     titleFontSize--;
   }
-  else{
-    titleFontSize = titleFontSize;
+  else {
+    null;
+    update();
   }
-  update();
 }
 void bodyTextIncrement() {
 
@@ -44,7 +44,9 @@ void bodyTextDecrement() {
 }
 
 
-  void changeValue() => light.value = light.value ? false : true;
+  void changeValue() { light.value = light.value ? false : true;
+  update();
+}
 
 
 

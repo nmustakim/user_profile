@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:user_profile/constants/constants.dart';
-import 'package:user_profile/screens/profile.dart';
 import 'package:user_profile/screens/settings.dart';
 import '../controller/settings_controller.dart';
-import 'notifications.dart';
 class Home extends StatelessWidget{
-  final controller = Get.put(SettingsController());
+  final SettingsController controller = Get.find();
  final String name,userName,email,age,birthDate;
  Home({super.key, required this.name, required this.userName, required this.email,required this.age, required this.birthDate});
 
@@ -39,7 +37,15 @@ class Home extends StatelessWidget{
           ],
         ),
       ),
-      body: Container(padding:const EdgeInsets.all(16),child: Text('Assalamu Alaikum,\n$name',style: const TextStyle(fontSize:30,fontWeight: FontWeight.bold),)),
-    );
-  }
+      body:Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          const Text('Welcome',style: TextStyle(fontSize:20)),
+          Center(child: Text(name,overflow:TextOverflow.ellipsis,style: const TextStyle(fontSize:60,fontWeight: FontWeight.bold),))
+        ],),
+      )
+
+    );}
 }

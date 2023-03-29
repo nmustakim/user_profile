@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:user_profile/constants/constants.dart';
 import '../global_components/bottom_bar.dart';
 
 
@@ -23,6 +24,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextEditingController dateController = TextEditingController();
   bool isObscure = true;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,35 +38,19 @@ class _SignUpFormState extends State<SignUpForm> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
+
             key: _loginFormKey,
             child: Padding(
               padding: const EdgeInsets.only(left: 27, right: 28),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   const SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    'Let\'s get start',
-                    style: TextStyle(
-                        fontFamily: GoogleFonts.manrope().fontFamily,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0XFF000000)),
-                  ),
-                  Text(
-                    'Please sign up to explore all the features',
-                    style: TextStyle(
-                        fontFamily: GoogleFonts.manrope().fontFamily,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: const Color(0XFF999EA1)),
-                  ),
-                  const SizedBox(
-                    height: 25,
+                    height: 55,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,28 +61,29 @@ class _SignUpFormState extends State<SignUpForm> {
                                 fontFamily: GoogleFonts.manrope().fontFamily,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: const Color(0XFF00004D)),
+                                color: kSecondaryColor),
                           ),
                           const SizedBox(
                             height: 7,
                           ),
                           SizedBox(
-                            height: 41,
-                            width: MediaQuery.of(context).size.width / 3,
+                            height: 45,
+                            width: MediaQuery.of(context).size.width / 2.6,
                             child: Center(
                               child: TextFormField(
-                                maxLines: 1,
+                               maxLines: 1,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
+                                  hintText: 'Enter name here',
                                     contentPadding:
                                         const EdgeInsets.fromLTRB(13, 10, 0, 12),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: const BorderSide(
-                                            color: Color(0XFFC6C6C6))),
+                                            color: kBorderColor)),
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Color(0XFFC6C6C6)))),
+                                            color: kBorderColor))),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Name is required';
@@ -114,7 +101,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           ),
                         ],
                       ),
-                      const SizedBox(width: 40,),
+                      const SizedBox(width: 45,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -124,28 +111,30 @@ class _SignUpFormState extends State<SignUpForm> {
                                 fontFamily: GoogleFonts.manrope().fontFamily,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: const Color(0XFF00004D)),
+                                color:  kSecondaryColor),
                           ),
                           const SizedBox(
                             height: 7,
                           ),
                           SizedBox(
-                            height: 41,
+                            height: 45,
                             width: MediaQuery.of(context).size.width / 3,
                             child: Center(
                               child: TextFormField(
+
                                 maxLines: 1,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
+                                    hintText: 'Enter username here',
                                     contentPadding:
                                         const EdgeInsets.fromLTRB(13, 10, 0, 12),
                                     enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: const BorderSide(
-                                            color: Color(0XFFC6C6C6))),
+                                            color: kBorderColor)),
                                     focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: Color(0XFFC6C6C6)))),       validator: (value) {
+                                            color:kBorderColor))),       validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'UserName is required';
                                 } else if (value.length > 12 || value.length < 2 ) {
@@ -171,27 +160,28 @@ class _SignUpFormState extends State<SignUpForm> {
                         fontFamily: GoogleFonts.manrope().fontFamily,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0XFF00004D)),
+                        color: kSecondaryColor),
                   ),
                   const SizedBox(
                     height: 7,
                   ),
                   SizedBox(
-                    height: 41,
+                    height: 45,
                     child: Center(
                       child: TextFormField(
                         maxLines: 1,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
+                            labelText: 'Please Enter Your Email',
                             contentPadding:
                                 const EdgeInsets.fromLTRB(13, 10, 0, 12),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide:
-                                    const BorderSide(color: Color(0XFFC6C6C6))),
+                                    const BorderSide(color: kBorderColor)),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Color(0XFFC6C6C6)))),
+                                    BorderSide(color: kBorderColor))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Email is required';
@@ -218,13 +208,13 @@ class _SignUpFormState extends State<SignUpForm> {
                         fontFamily: GoogleFonts.manrope().fontFamily,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0XFF00004D)),
+                        color: kSecondaryColor),
                   ),
                   const SizedBox(
                     height: 7,
                   ),
                   SizedBox(
-                    height: 41,
+                    height: 45,
                     child: Center(
                       child: TextFormField(
                         maxLines: 1,
@@ -241,10 +231,10 @@ class _SignUpFormState extends State<SignUpForm> {
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide:
-                                    const BorderSide(color: Color(0XFFC6C6C6))),
+                                    const BorderSide(color:kBorderColor)),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Color(0XFFC6C6C6)))),
+                                    BorderSide(color:kBorderColor))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Password is required';
@@ -269,27 +259,28 @@ class _SignUpFormState extends State<SignUpForm> {
                         fontFamily: GoogleFonts.manrope().fontFamily,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0XFF00004D)),
+                        color: kSecondaryColor),
                   ),
                   const SizedBox(
                     height: 7,
                   ),
                   SizedBox(
-                    height: 41,
+                    height: 45,
                     child: Center(
                       child: TextFormField(
                         maxLines: 1,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
+                            hintText: 'Enter age here',
                             contentPadding:
                             const EdgeInsets.fromLTRB(13, 10, 0, 12),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide:
-                                const BorderSide(color: Color(0XFFC6C6C6))),
+                                const BorderSide(color: kBorderColor)),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Color(0XFFC6C6C6)))),
+                                BorderSide(color: kBorderColor))),
                         validator: (value) {
                         return null;
 
@@ -310,13 +301,13 @@ class _SignUpFormState extends State<SignUpForm> {
                         fontFamily: GoogleFonts.manrope().fontFamily,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0XFF00004D)),
+                        color: kSecondaryColor),
                   ),
                   const SizedBox(
                     height: 7,
                   ),
                   SizedBox(
-                    height: 41,
+                    height: 45,
                     child: Center(
                       child: TextFormField(
                         readOnly: true,
@@ -341,18 +332,18 @@ class _SignUpFormState extends State<SignUpForm> {
                         maxLines: 1,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
+                            hintText: 'Enter birth date here',
 
                             contentPadding:
                             const EdgeInsets.fromLTRB(13, 10, 0, 12),
-                            hintText: 'Please enter your date of birth',
                             suffixIcon:  Container(padding:const EdgeInsets.all(8),child: Image.asset('assets/images/calendar.png',)),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide:
-                                const BorderSide(color: Color(0XFFC6C6C6))),
+                                const BorderSide(color: kBorderColor)),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Color(0XFFC6C6C6)))),
+                                BorderSide(color: kBorderColor))),
 
                       ),
                     ),
@@ -365,13 +356,14 @@ class _SignUpFormState extends State<SignUpForm> {
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
-                              backgroundColor: const Color(0XFF351A96)),
+                              backgroundColor: kPrimaryColor),
                           onPressed: () {
                             _loginFormKey.currentState!.save();
                             _loginFormKey.currentState!.validate();
                             if (_loginFormKey.currentState!.validate() == true) {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomBar(name: name, userName: userName, email: email, age: age, birthDate: birthDate,)));
                             } else {
+
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content:
@@ -398,7 +390,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               fontFamily: GoogleFonts.manrope().fontFamily,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: const Color(0XFF160062)))
+                              color: kPrimaryColor))
                     ],
                   )
                 ],

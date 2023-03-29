@@ -12,7 +12,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         automaticallyImplyLeading: false,leading:InkWell(onTap:(){Navigator.pop(context);},child: Icon(Icons.navigate_before,size: 40,),),
+         automaticallyImplyLeading: false,leading:InkWell(onTap:(){Navigator.pop(context);},child: const Icon(Icons.navigate_before,size: 40,),),
         backgroundColor: kPrimaryColor,
           centerTitle:true,title: Obx(() => Text('Settings',style: TextStyle(fontSize: ctrl.titleFontSize.toDouble()),),)),
       body:Padding(
@@ -30,7 +30,7 @@ class Settings extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
               height:40,
               child: Row(children: [
-                const Text('Body text font size'), const SizedBox(width: 20,),InkWell(onTap:ctrl.bodyTextIncrement,child: const Icon(Icons.add_circle),),const SizedBox(width: 8,),InkWell(onTap: ctrl.bodyTextDecrement,child: const Icon(Icons.remove_circle),)],),
+                const Text('Body text font size'), const SizedBox(width: 16,),InkWell(onTap:ctrl.bodyTextIncrement,child: const Icon(Icons.add_circle),),const SizedBox(width: 8,),InkWell(onTap: ctrl.bodyTextDecrement,child: const Icon(Icons.remove_circle),)],),
             ),
           ),
           Card(
@@ -39,12 +39,15 @@ class Settings extends StatelessWidget {
               height: 40,
               child: Row(
                 children: [
-                  const Text('Light'),
+                  const Text('Dark'),
+
                   Obx(() => Switch(
+                    thumbColor: MaterialStateProperty.all(kSecondaryColor),
                       onChanged: (value) => ctrl.changeValue(),
                       value: ctrl.light.value),
                   ),
-                  const Text('Dark'),
+                  const Text('Light'),
+
                 ],
               ),
             ),

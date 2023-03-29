@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:user_profile/screens/splash.dart';
 
+import 'controller/settings_controller.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+MyApp({super.key});
+  final controller = Get.put(SettingsController());
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  Obx(() => MaterialApp(
+      theme: controller.light.value == true ? ThemeData.light():ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
-    );
+      home: const SplashScreen(),
+    ));
   }
 }
-

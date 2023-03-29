@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:user_profile/constants/constants.dart';
 
 import '../controller/settings_controller.dart';
-import '../global_components/bottom_bar.dart';
-import 'home.dart';
 
 class Profile extends StatelessWidget {
   final SettingsController ctrl = Get.find();
@@ -23,9 +21,9 @@ class Profile extends StatelessWidget {
             const SizedBox(height: 20,),
             const Center(child:CircleAvatar(radius: 50,foregroundImage: AssetImage('assets/images/profile.png'),) ,),
             const SizedBox(height: 8,),
-            Center(child: Text(userName)),
+            Center(child: Text(userName,overflow:TextOverflow.ellipsis,)),
             const SizedBox(height: 25,),
-            Card(child: ListTile(title: Text('Name',style: TextStyle(color: kSecondaryColor,fontSize: ctrl.bodyFontSize.toDouble(),fontWeight: FontWeight.bold,),),subtitle: Text(name,style:  TextStyle(fontSize: ctrl.bodyFontSize.toDouble(),color: Colors.black),))),
+            Card(child: ListTile(title: Text('Name',overflow:TextOverflow.ellipsis,style: TextStyle(color: kSecondaryColor,fontSize: ctrl.bodyFontSize.toDouble(),fontWeight: FontWeight.bold,),),subtitle: Text(name,style:  TextStyle(fontSize: ctrl.bodyFontSize.toDouble(),color: Colors.black),))),
             Card(child: ListTile(title: Text('Email',style: TextStyle(color:kSecondaryColor,fontSize: ctrl.bodyFontSize.toDouble(),fontWeight: FontWeight.bold,),),subtitle: Text(email,style: TextStyle(fontSize: ctrl.bodyFontSize.toDouble(),color: Colors.black),))),
             Card(child: ListTile(title: Text('Age',style: TextStyle(color: kSecondaryColor,fontSize: ctrl.bodyFontSize.toDouble(),fontWeight: FontWeight.bold,),),subtitle: Text(age,style:  TextStyle(fontSize: ctrl.bodyFontSize.toDouble(),color: Colors.black),))),
             Card(child: ListTile(title: Text('Birth date',style: TextStyle(color: kSecondaryColor,fontSize: ctrl.bodyFontSize.toDouble(),fontWeight: FontWeight.bold,),),subtitle: Text(birthDate,style:  TextStyle(fontSize: ctrl.bodyFontSize.toDouble(),color: Colors.black),)))
