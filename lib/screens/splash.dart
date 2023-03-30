@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
           Container(height: 420,width: MediaQuery.of(context).size.width,decoration: const BoxDecoration(color:Colors.white,borderRadius: BorderRadius.only(bottomLeft: Radius.circular(250))),)
           ,
-          Container(height:250,width:350,padding:const EdgeInsets.only(left: 56,top: 180),child: const Text('UsersBook',style: TextStyle(color:kSecondaryColor,fontSize: 60,fontWeight: FontWeight.bold),)),
+          const Positioned(top:190,left:56,child: SizedBox(height:250,width:350,child: Text('UsersBook',style: TextStyle(color:kSecondaryColor,fontSize: 60,fontWeight: FontWeight.bold),))),
           Padding(
             padding: const EdgeInsets.only(top: 250),
             child: Row(
